@@ -32,11 +32,11 @@ data "archive_file" "lambda" {
 }
 
 # Define the Lambda function using the archived ZIP file
-resource "aws_lambda_function" "my_func" {
+resource "aws_lambda_function" "viewsCounter" {
   filename      = data.archive_file.lambda.output_path
-  function_name = "my_func"
+  function_name = "viewsCounter"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "func.lambda_handler" # Assuming your Python file has a function named "lambda_handler"
+  handler       = "func.lambda_handler"
 
   source_code_hash = data.archive_file.lambda.output_base64sha256
 
