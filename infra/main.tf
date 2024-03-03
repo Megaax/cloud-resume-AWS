@@ -76,7 +76,7 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
 
 # Define an S3 bucket
 resource "aws_s3_bucket" "myBucket" {
-  bucket = "mega-tf-cloud-resume-challenge"
+  bucket = "mega-tf-cloud-resume-challenge-1"
 }
 
 # Configure the S3 bucket for website hosting
