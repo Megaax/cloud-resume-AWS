@@ -45,7 +45,7 @@ resource "aws_lambda_function" "viewsCounter" {
 
 # Define an API Gateway URL for the Lambda function
 resource "aws_lambda_function_url" "url1" {
-  function_name      = aws_lambda_function.my_func.function_name
+  function_name      = aws_lambda_function.viewsCounter.function_name
   authorization_type = "NONE"
 
   # Configure CORS for the API Gateway URL
