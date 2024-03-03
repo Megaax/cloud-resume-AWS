@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     // Fetch the counter value from the Lambda function
-    fetch('https://wlpmna5u6ipnhiveqfgktlltra0uzbnv.lambda-url.us-east-1.on.aws/')
+    fetch('https://nfynpwgw44stmt5cj2d2iwrbdi0kahxp.lambda-url.us-east-1.on.aws/')
         .then(response => response.json())
         .then(data => {
             // Update the HTML content with the counter value
