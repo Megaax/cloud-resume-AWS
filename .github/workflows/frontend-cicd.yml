@@ -1,25 +1,3 @@
-# name: Upload Website
-
-# on:
-#   workflow_dispatch:
-#   push:
-#     branches:
-#     - main
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@master
-#     - uses: jakejarvis/s3-sync-action@master
-#       with:
-#         args: --acl private --follow-symlinks --delete
-#       env:
-#         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#         AWS_REGION: 'us-east-1'
-#         SOURCE_DIR: 'website'
 name: Deploy Website and Provision Infrastructure
 
 on:
@@ -29,7 +7,7 @@ on:
     - main
 
 jobs:
-  deploy:
+  Provision-Infrastructure:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +22,7 @@ jobs:
       run: |
         cd infra
         terraform init
-        terraform apply -auto-approve
+        terraform destroy -auto-approve
       env:
         TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -53,7 +31,7 @@ jobs:
   website:
     runs-on: ubuntu-latest
 
-    needs: deploy
+    needs: Provision-Infrastructure
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
